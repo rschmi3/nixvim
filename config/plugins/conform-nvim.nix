@@ -3,13 +3,9 @@
   extraPackages = with pkgs; [
     # Used to format Lua code
     stylua
+    nixfmt-classic
     rustfmt
   ];
-
-  keymaps = [{
-    action = "<cmd>NvimTreeOpen<CR>";
-    key = "<leader>e";
-  }];
 
   plugins.conform-nvim = {
     enable = true;
