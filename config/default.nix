@@ -38,6 +38,11 @@
         action = "<cmd>b#|bd#<CR>";
         key = "<leader>q";
       }
+      {
+        # Close all buffers but current
+        action = "<cmd>%bd|e#|bd#<CR>";
+        key = "<leader>Q";
+      }
     ];
 
     opts = {
