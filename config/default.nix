@@ -6,7 +6,19 @@
 
     colorschemes.catppuccin = {
       enable = true;
-      settings = { flavour = "frappe"; };
+      settings = {
+        custom_highlights = ''
+          function(colors)
+            return {
+              LineNrAbove = { fg = colors.overlay0 },
+              LineNr = { fg = colors.lavender },
+              LineNrBelow = { fg = colors.overlay0 }
+            }
+          end
+        '';
+
+        flavour = "frappe";
+      };
     };
 
     globals.mapleader = " ";
@@ -47,7 +59,7 @@
 
     opts = {
       number = true; # Show line numbers
-      relativenumber = false; # Show relative line numbers
+      relativenumber = true; # Show relative line numbers
       expandtab = true;
       shiftwidth = 2; # Tab width should be 2
       smartindent = false;
@@ -57,8 +69,9 @@
 
       lualine.enable = true;
 
-      telescope.enable = true;
       oil.enable = false;
+      nvim-colorizer.enable = true;
+      telescope.enable = true;
       treesitter = {
         enable = true;
         settings.indent.enable = true;
