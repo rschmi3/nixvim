@@ -12,5 +12,6 @@
     hijackUnnamedBufferWhenOpening = true;
     openOnSetup = true;
     respectBufCwd = true;
+    updateFocusedFile.enable = true;
   };
 }
