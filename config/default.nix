@@ -31,10 +31,7 @@
     };
 
     keymaps = [
-      {
-        action = "<cmd>Telescope live_grep<CR>";
-        key = "<leader>g";
-      }
+
       {
         # Buffer Next
         action = "<cmd>bn<CR>";
@@ -71,7 +68,6 @@
 
       oil.enable = false;
       nvim-colorizer.enable = true;
-      telescope.enable = true;
       treesitter = {
         enable = true;
         settings.indent.enable = true;
