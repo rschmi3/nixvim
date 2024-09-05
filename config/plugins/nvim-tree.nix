@@ -8,6 +8,10 @@
   plugins.nvim-tree = {
     enable = true;
     disableNetrw = true;
+    git = {
+      enable = true;
+      ignore = true;
+    };
     hijackCursor = true;
     hijackUnnamedBufferWhenOpening = true;
     openOnSetup = true;
