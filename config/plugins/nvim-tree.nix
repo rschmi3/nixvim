@@ -10,7 +10,7 @@
     disableNetrw = true;
     git = {
       enable = true;
-      ignore = true;
+      ignore = false;
     };
     hijackCursor = true;
     hijackUnnamedBufferWhenOpening = true;
