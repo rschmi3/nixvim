@@ -2,9 +2,10 @@
 
   extraPackages = with pkgs; [
     # Used to format Lua code
-    stylua
     nixfmt-classic
+    nodePackages.prettier
     rustfmt
+    stylua
   ];
 
   plugins.conform-nvim = {
@@ -14,6 +15,7 @@
       formatters_by_ft = {
         nix = [ "nixfmt" ];
         rust = [ "rustfmt" ];
+        typescript = [ "prettier" ];
       };
 
       format_on_save = {
