@@ -1,4 +1,6 @@
-{
+{ pkgs, ... }: {
+  extraPackages = with pkgs; [ ripgrep ];
+
   keymaps = [
     {
       action = "<cmd>Telescope live_grep<CR>";
