@@ -1,4 +1,4 @@
-{
+{ ... }: {
   imports = [
     ./bufferline.nix
     ./cmp.nix
@@ -9,4 +9,6 @@
     ./nvim-tree.nix
     ./telescope.nix
   ];
+
+  plugins.web-devicons.enable = true;
 }
