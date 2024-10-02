@@ -2,6 +2,8 @@
 
   extraPackages = with pkgs; [
     # Used to format Lua code
+    black
+    isort
     nixfmt-classic
     nodePackages.prettier
     rustfmt
@@ -16,6 +18,7 @@
 
       formatters_by_ft = {
         nix = [ "nixfmt" ];
+        python = [ "isort" "black" ];
         rust = [ "rustfmt" ];
         typescript = [ "prettier" ];
       };
