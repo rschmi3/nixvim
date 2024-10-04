@@ -8,6 +8,7 @@
     nodePackages.prettier
     rustfmt
     stylua
+    yamlfmt
   ];
 
   plugins.conform-nvim = {
@@ -21,6 +22,7 @@
         python = [ "isort" "black" ];
         rust = [ "rustfmt" ];
         typescript = [ "prettier" ];
+        yaml = [ "yamlfmt" ];
       };
 
       format_on_save = {
