@@ -6,6 +6,7 @@
     isort
     nixfmt-classic
     nodePackages.prettier
+    pgformatter
     rustfmt
     stylua
   ];
@@ -18,6 +19,7 @@
 
       formatters_by_ft = {
         nix = [ "nixfmt" ];
+        sql = [ "pg_format" ];
         python = [ "isort" "black" ];
         rust = [ "rustfmt" ];
         typescript = [ "prettier" ];
