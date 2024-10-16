@@ -60,6 +60,7 @@
       expandtab = true;
       shiftwidth = 2; # Tab width should be 2
       smartindent = false;
+      whichwrap = "b,s,<,>,h,l,[,]";
     };
 
     plugins = {
