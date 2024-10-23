@@ -1,10 +1,11 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
 
   extraPackages = with pkgs; [
     # Used to format Lua code
     black
     isort
-    nixfmt-classic
+    nixfmt-rfc-style
     nodePackages.prettier
     pgformatter
     rustfmt
@@ -20,7 +21,10 @@
       formatters_by_ft = {
         nix = [ "nixfmt" ];
         sql = [ "pg_format" ];
-        python = [ "isort" "black" ];
+        python = [
+          "isort"
+          "black"
+        ];
         rust = [ "rustfmt" ];
         typescript = [ "prettier" ];
       };
