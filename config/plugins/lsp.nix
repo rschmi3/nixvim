@@ -1,4 +1,8 @@
+{ pkgs, ... }:
 {
+
+  extraPackages = with pkgs; [ nixfmt-rfc-style ];
+
   plugins.lsp = {
     enable = true;
 
@@ -28,9 +32,21 @@
         settings.telemetry.enable = false;
       };
 
-      nil-ls = { enable = true; };
+      nixd = {
+        enable = true;
+        settings = {
+          formatting.command = [ "nixfmt" ];
+          nixpkgs.expr = "import <nixpkgs> { }";
+          options = {
+            nixos.expr = ''(builtins.getFlake "github:rschmi3/nixos").nixosConfigurations.nix-fw13.options'';
+          };
+        };
+      };
+      # nil-ls = { enable = true; };
 
-      pylsp = { enable = true; };
+      pylsp = {
+        enable = true;
+      };
 
       rust-analyzer = {
         enable = true;
