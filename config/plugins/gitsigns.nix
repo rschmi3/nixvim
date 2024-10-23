@@ -1,1 +1,4 @@
-{ pkgs, ... }: { plugins.gitsigns.enable = true; }
+{ pkgs, ... }:
+{
+  plugins.gitsigns.enable = true;
+}

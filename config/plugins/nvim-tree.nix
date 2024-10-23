@@ -1,9 +1,11 @@
 {
 
-  keymaps = [{
-    action = "<cmd>NvimTreeOpen<CR>";
-    key = "<leader>e";
-  }];
+  keymaps = [
+    {
+      action = "<cmd>NvimTreeOpen<CR>";
+      key = "<leader>e";
+    }
+  ];
 
   plugins.nvim-tree = {
     enable = true;
