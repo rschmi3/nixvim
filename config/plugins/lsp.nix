@@ -1,7 +1,10 @@
 { pkgs, ... }:
 {
 
-  extraPackages = with pkgs; [ nixfmt-rfc-style ];
+  extraPackages = with pkgs; [
+    nixfmt-rfc-style
+    rust-analyzer
+  ];
 
   plugins.lsp = {
     enable = true;
