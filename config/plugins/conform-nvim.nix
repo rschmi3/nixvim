@@ -6,6 +6,7 @@
     black
     isort
     nixfmt-rfc-style
+    nodePackages.fixjson
     nodePackages.prettier
     pgformatter
     rustfmt
@@ -19,6 +20,7 @@
       default_format_opts.lsp_format = "fallback";
 
       formatters_by_ft = {
+        json = [ "fixjson" ];
         nix = [ "nixfmt" ];
         sql = [ "pg_format" ];
         python = [
