@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 {
 
   extraPackages = with pkgs; [
@@ -17,6 +17,13 @@
 
     settings = {
       default_format_opts.lsp_format = "fallback";
+
+      formatters = {
+        pg_format = {
+          command = lib.getExe pkgs.pgformatter;
+          prepend_args = [ "--no-space-function" ];
+        };
+      };
 
       formatters_by_ft = {
         javascript = [ "prettier" ];
