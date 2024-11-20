@@ -31,26 +31,10 @@
     };
 
     keymaps = [
-
-      {
-        # Buffer Next
-        action = "<cmd>bn<CR>";
-        key = "<leader><tab>";
-      }
-      {
-        # Buffer Previous
-        action = "<cmd>bp<CR>";
-        key = "<leader><S-Tab>";
-      }
       {
         # Close current buffer without closing window
         action = "<cmd>b#|bd#<CR>";
         key = "<leader>q";
-      }
-      {
-        # Close all buffers but current
-        action = "<cmd>%bd|e#|bd#<CR>";
-        key = "<leader>Q";
       }
     ];
 
