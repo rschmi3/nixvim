@@ -30,6 +30,10 @@
       docker-compose-language-service.enable = true;
       dockerls.enable = true;
 
+      gopls = {
+        enable = true;
+      };
+
       lua-ls = {
         enable = true;
         settings.telemetry.enable = false;
