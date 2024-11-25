@@ -2,13 +2,16 @@
 
   keymaps = [
     {
-      action = "<cmd>NvimTreeOpen<CR>";
+      action = "<cmd>NvimTreeToggle<CR>";
       key = "<leader>e";
     }
   ];
 
   plugins.nvim-tree = {
     enable = true;
+    actions = {
+      openFile.quitOnOpen = true;
+    };
     disableNetrw = true;
     git = {
       enable = true;
