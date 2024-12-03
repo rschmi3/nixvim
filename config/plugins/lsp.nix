@@ -27,14 +27,14 @@
 
     servers = {
 
-      docker-compose-language-service.enable = true;
+      docker_compose_language_service.enable = true;
       dockerls.enable = true;
 
       gopls = {
         enable = true;
       };
 
-      lua-ls = {
+      lua_ls = {
         enable = true;
         settings.telemetry.enable = false;
       };
@@ -49,19 +49,19 @@
           };
         };
       };
-      # nil-ls = { enable = true; };
+      # nil_ls = { enable = true; };
 
       pylsp = {
         enable = true;
       };
 
-      rust-analyzer = {
+      rust_analyzer = {
         enable = true;
         installCargo = true;
         installRustc = true;
       };
 
-      ts-ls.enable = true;
+      ts_ls.enable = true;
     };
   };
 }
