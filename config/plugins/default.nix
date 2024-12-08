@@ -11,6 +11,7 @@
     ./lsp.nix
     ./nvim-tree.nix
     ./telescope.nix
+    ./which-key.nix
   ];
 
   plugins.web-devicons.enable = true;
