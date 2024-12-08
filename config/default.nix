@@ -36,6 +36,16 @@
         action = "<cmd>b#|bd#<CR>";
         key = "<leader>q";
       }
+      {
+        # Page up and centre
+        action = "<C-u>zz";
+        key = "<C-u>";
+      }
+      {
+        # Page down and centre
+        action = "<C-d>zz";
+        key = "<C-d>";
+      }
     ];
 
     opts = {
