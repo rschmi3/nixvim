@@ -49,9 +49,10 @@
     ];
 
     opts = {
+      expandtab = true;
       number = true; # Show line numbers
       relativenumber = true; # Show relative line numbers
-      expandtab = true;
+      scrolloff = 10;
       shiftwidth = 2; # Tab width should be 2
       smartindent = false;
       tabstop = 2;
