@@ -11,6 +11,7 @@
     ./lsp.nix
     ./nvim-tree.nix
     ./telescope.nix
+    ./treesitter.nix
     ./treesitter-context.nix
     ./which-key.nix
   ];
