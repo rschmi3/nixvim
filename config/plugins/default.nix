@@ -1,12 +1,12 @@
 { ... }:
 {
   imports = [
-    ./bufferline.nix
     ./cmp.nix
     ./comment.nix
     ./conform-nvim.nix
     ./floaterm.nix
     ./gitsigns.nix
+    ./harpoon.nix
     ./lazygit.nix
     ./lsp.nix
     ./nvim-tree.nix
