@@ -1,6 +1,7 @@
 { ... }:
 {
   imports = [
+    ./bufferline.nix
     ./cmp.nix
     ./comment.nix
     ./conform-nvim.nix
@@ -16,6 +17,8 @@
     ./undo-tree.nix
     ./which-key.nix
   ];
-
-  plugins.web-devicons.enable = true;
+  config = {
+    bufferline.enable = false;
+    plugins.web-devicons.enable = true;
+  };
 }
