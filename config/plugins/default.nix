@@ -13,6 +13,7 @@
     ./telescope.nix
     ./treesitter.nix
     ./treesitter-context.nix
+    ./undo-tree.nix
     ./which-key.nix
   ];
 
