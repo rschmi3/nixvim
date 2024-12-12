@@ -62,13 +62,7 @@
     plugins = {
 
       lualine.enable = true;
-
       oil.enable = false;
-      nvim-colorizer.enable = true;
-      treesitter = {
-        enable = true;
-        settings.indent.enable = true;
-      };
       luasnip.enable = true;
     };
   };
