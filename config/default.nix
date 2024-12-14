@@ -46,6 +46,25 @@
         action = "<C-d>zz";
         key = "<C-d>";
       }
+      {
+        # Next quickfix
+        action = "<cmd>cnext<CR>";
+        key = "<M-j>";
+      }
+      {
+        # Previous quickfix
+        action = "<cmd>cprev<CR>";
+        key = "<M-k>";
+      }
+      {
+        # Close quickfix
+        action = "<cmd>cclose<CR>";
+        key = "<M-c>";
+      }
+      {
+        action = "<cmd>lua vim.diagnostic.setqflist({severity=vim.diagnostic.severity.ERROR})<CR>";
+        key = "<M-d>";
+      }
     ];
 
     opts = {
