@@ -2,7 +2,7 @@
 {
   imports = [
     ./bufferline.nix
-    ./cmp.nix
+    ./completion
     ./comment.nix
     ./conform-nvim.nix
     ./floaterm.nix
