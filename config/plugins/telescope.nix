@@ -8,7 +8,7 @@
       key = "<leader>fg";
     }
     {
-      action = "<cmd>Telescope find_files<CR>";
+      action = "<cmd>Telescope find_files hidden=true<CR>";
       key = "<leader>ff";
     }
     {
@@ -21,5 +21,18 @@
     }
   ];
 
-  plugins.telescope.enable = true;
+  plugins.telescope = {
+    enable = true;
+    settings = {
+      defaults = {
+        file_ignore_patterns = [
+          "^.cargo"
+          "^.git"
+          "^node_modules"
+          "^.npm"
+          "^.rustup"
+        ];
+      };
+    };
+  };
 }
