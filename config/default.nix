@@ -57,6 +57,11 @@
         key = "<M-k>";
       }
       {
+        # Open quickfix
+        action = "<cmd>copen<CR>";
+        key = "<M-o>";
+      }
+      {
         # Close quickfix
         action = "<cmd>cclose<CR>";
         key = "<M-c>";
