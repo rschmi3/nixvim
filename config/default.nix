@@ -79,9 +79,7 @@
     };
 
     plugins = {
-
       lualine.enable = true;
-      oil.enable = false;
       luasnip.enable = true;
     };
   };
