@@ -28,9 +28,10 @@
         file_ignore_patterns = [
           "^.cargo"
           "^.git"
-          "^node_modules"
           "^.npm"
           "^.rustup"
+          "^node_modules"
+          "^target"
         ];
       };
     };
