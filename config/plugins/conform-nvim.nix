@@ -30,12 +30,12 @@
         javascript = [ "prettier" ];
         json = [ "prettier" ];
         nix = [ "nixfmt" ];
-        sql = [ "pg_format" ];
         python = [
           "isort"
           "black"
         ];
         rust = [ "rustfmt" ];
+        sql = [ "pg_format" ];
         typescript = [ "prettier" ];
       };
 
