@@ -10,6 +10,7 @@
         "2" = "<C-2>";
         "3" = "<C-3>";
         "4" = "<C-4>";
+        "5" = "<C-5>";
       };
       navNext = "<leader><tab>";
       navPrev = "<leader><S-tab>";
