@@ -85,7 +85,6 @@
 
     plugins = {
       lualine.enable = true;
-      luasnip.enable = true;
     };
   };
 
