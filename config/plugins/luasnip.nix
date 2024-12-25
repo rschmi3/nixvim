@@ -3,9 +3,11 @@
     keymaps = [
       {
         # Jump to next snippet
-        action = ''
-          if ls.expand_or_jumpable() then
-            ls.expand_or_jump()
+        action.__raw = ''
+          function() 
+            if ls.expand_or_jumpable() then
+              ls.expand_or_jump()
+            end
           end
         '';
         key = "<C-j>";
@@ -19,9 +21,11 @@
       }
       {
         # Jump to previous snippet
-        action = ''
-          if ls.jumpable(-1) then
-            ls.jump(-1)
+        action.__raw = ''
+          function()
+            if ls.jumpable(-1) then
+              ls.jump(-1)
+            end
           end
         '';
         key = "<C-k>";
@@ -35,9 +39,11 @@
       }
       {
         # List options
-        action = ''
-          if ls.choice_active() then
-            ls.change_choice(1)
+        action.__raw = ''
+          function()
+            if ls.choice_active() then
+              ls.change_choice(1)
+            end
           end
         '';
         key = "<C-l>";
