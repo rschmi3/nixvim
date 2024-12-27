@@ -26,6 +26,7 @@
       };
 
       formatters_by_ft = {
+        css = [ "prettier" ];
         go = [ "gofmt" ];
         javascript = [ "prettier" ];
         json = [ "prettier" ];
