@@ -1,6 +1,6 @@
 { ... }:
 let
-  completion = "cmp";
+  completion = "coq";
 in
 {
   imports = [
