@@ -11,6 +11,7 @@
     ./harpoon.nix
     ./lazygit.nix
     ./lsp.nix
+    ./lsp-format.nix
     ./luasnip.nix
     ./telescope.nix
     ./treesitter.nix
