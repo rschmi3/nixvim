@@ -76,7 +76,7 @@
       expandtab = true;
       number = true; # Show line numbers
       relativenumber = true; # Show relative line numbers
-      scrolloff = 10;
+      scrolloff = 20;
       shiftwidth = 2; # Tab width should be 2
       smartindent = false;
       tabstop = 2;
