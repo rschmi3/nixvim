@@ -39,9 +39,8 @@
         enable = true;
       };
 
-      html = {
-        enable = true;
-      };
+      html.enable = true;
+      htmx.enable = true;
 
       lua_ls = {
         enable = true;
