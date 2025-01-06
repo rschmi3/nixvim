@@ -10,6 +10,7 @@
     ./gitsigns.nix
     ./harpoon.nix
     ./lazygit.nix
+    ./line
     ./lsp.nix
     ./lsp-format.nix
     ./luasnip.nix
