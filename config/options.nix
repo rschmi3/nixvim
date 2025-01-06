@@ -1,6 +1,6 @@
 {
   config = {
-    clipboard.register = "unamedplus";
+    clipboard.register = "unnamedplus";
     opts = {
       cursorline = true;
       expandtab = true;
