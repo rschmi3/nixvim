@@ -1,10 +1,21 @@
 {
+  keymaps = [
+    {
+      action = "<cmd>FloatermToggle scratch<CR>";
+      key = "<A-t>";
+      mode = [
+        "i"
+        "n"
+        "t"
+        "v"
+      ];
+    }
+  ];
   plugins.floaterm = {
     enable = true;
-    height = 0.9;
-    keymaps = {
-      toggle = "<A-t>";
+    settings = {
+      height = 0.9;
+      width = 0.9;
     };
-    width = 0.9;
   };
 }
