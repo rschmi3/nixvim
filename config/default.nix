@@ -44,17 +44,17 @@
     colorschemes.catppuccin = {
       enable = true;
       settings = {
-        custom_highlights = ''
-          function(colors)
-            return {
-              LineNrAbove = { fg = colors.overlay0 },
-              LineNr = { fg = colors.lavender },
-              LineNrBelow = { fg = colors.overlay0 }
-            }
-          end
-        '';
+        # custom_highlights = ''
+        #   function(colors)
+        #     return {
+        #       LineNrAbove = { fg = colors.overlay0 },
+        #       LineNr = { fg = colors.lavender },
+        #       LineNrBelow = { fg = colors.overlay0 }
+        #     }
+        #   end
+        # '';
 
-        flavour = "frappe";
+        flavour = "macchiato";
       };
     };
 
