@@ -17,12 +17,8 @@
       };
 
       lspBuf = {
-        K = "hover";
-        gD = "references";
-        gd = "definition";
-        gi = "implementation";
-        gt = "type_definition";
-        "<leader>ca" = "code_action";
+        grd = "definition";
+        grt = "type_definition";
       };
     };
 
@@ -40,7 +36,7 @@
       };
 
       html.enable = true;
-      htmx.enable = true;
+      htmx.enable = false;
 
       lua_ls = {
         enable = true;
