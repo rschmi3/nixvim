@@ -9,6 +9,38 @@
 
   config = {
 
+    autoCmd = [
+      {
+        callback.__raw = ''
+          function()
+            vim.highlight.on_yank()
+          end'';
+        desc = "Highlight when yanking (copying) text";
+        event = [ "TextYankPost" ];
+        group = "highlight_yank";
+      }
+      {
+        callback.__raw = ''
+          function()
+            vim.opt.number = false
+            vim.opt.relativenumber = false
+          end'';
+        desc = "Disable line numbers in terminal";
+        event = [ "TermOpen" ];
+        group = "custom_term_open";
+      }
+    ];
+
+    autoGroups = {
+      custom_term_open = {
+        clear = true;
+      };
+
+      highlight_yank = {
+        clear = true;
+      };
+    };
+
     colorschemes.catppuccin = {
       enable = true;
       settings = {
@@ -28,16 +60,6 @@
 
     globals.mapleader = " ";
 
-    highlight = {
-      # Comment.fg = "#ff00ff";
-      # Comment.bg = "#000000";
-      Comment.underline = true;
-      Comment.bold = true;
-    };
-
-    plugins = {
-      lualine.enable = true;
-    };
     package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
   };
 
