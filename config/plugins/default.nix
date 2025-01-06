@@ -18,5 +18,6 @@
   ];
   config = {
     bufferline.enable = false;
+    plugins.web-devicons.enable = true;
   };
 }
