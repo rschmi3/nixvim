@@ -28,7 +28,7 @@
             module = import ./config; # import the module directly
             # You can use `extraSpecialArgs` to pass additional arguments to your module files
             extraSpecialArgs = {
-              # inherit (inputs) foo;
+              inherit inputs;
             };
           };
           nvim = nixvim'.makeNixvimWithModule nixvimModule;
@@ -41,7 +41,7 @@
 
           packages = {
             # Lets you run `nix run .` to start nixvim
-            default = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
+            default = nvim;
           };
         };
     };

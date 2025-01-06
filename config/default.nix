@@ -1,3 +1,4 @@
+{ inputs, pkgs, ... }:
 {
   # Import all your configuration modules here
   imports = [
@@ -37,6 +38,7 @@
     plugins = {
       lualine.enable = true;
     };
+    package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
   };
 
 }
