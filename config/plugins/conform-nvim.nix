@@ -12,6 +12,17 @@
     stylua
   ];
 
+  keymaps = [
+    {
+      action.__raw = ''
+        function()
+          require("conform").format({async = true})
+        end'';
+      key = "<leader><leader>x";
+      mode = [ "n" ];
+    }
+  ];
+
   plugins.conform-nvim = {
     enable = true;
 
@@ -30,6 +41,7 @@
         go = [ "gofmt" ];
         javascript = [ "prettier" ];
         json = [ "prettier" ];
+        lua = [ "stylua" ];
         nix = [ "nixfmt" ];
         python = [
           "isort"
