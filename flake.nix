@@ -2,6 +2,7 @@
   description = "A nixvim configuration";
 
   inputs = {
+    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixvim.url = "github:nix-community/nixvim";
     flake-parts.url = "github:hercules-ci/flake-parts";
@@ -40,7 +41,7 @@
 
           packages = {
             # Lets you run `nix run .` to start nixvim
-            default = nvim;
+            default = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
           };
         };
     };
