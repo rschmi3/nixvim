@@ -51,16 +51,6 @@
         mode = [ "n" ];
       }
 
-      # Escape terminal mode
-      {
-        action = "<C-\\><C-n>";
-        key = "<Esc><Esc>";
-        mode = [ "t" ];
-        options = {
-          desc = "Exit terminal mode";
-        };
-      }
-
       # Disable arrow keys in normal mode
       {
         action = "<cmd>echo 'Use h to move!!'<CR>";

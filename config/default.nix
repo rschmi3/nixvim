@@ -24,10 +24,15 @@
           function()
             vim.opt.number = false
             vim.opt.relativenumber = false
+
+            -- NOTE: This won't work in all terminal emulators/tmux/etc. Try your own mapping
+            -- or just use <C-\><C-n> to exit terminal mode
+            vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { buffer = true, desc = "Exit terminal mode" })
           end'';
         desc = "Disable line numbers in terminal";
         event = [ "TermOpen" ];
         group = "custom_term_open";
+        pattern = "term://^{*lazygit*}";
       }
     ];
 
