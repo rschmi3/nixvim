@@ -34,8 +34,8 @@
         mode = [ "n" ];
       }
       {
-        action = "<M-o>";
-        key = "<cmd>copen<CR>";
+        action = "<cmd>copen<CR>";
+        key = "<M-o>";
         mode = [ "n" ];
       }
       {
