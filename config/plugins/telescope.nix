@@ -88,6 +88,7 @@
           "^.rustup"
           "^node_modules"
           "^target"
+          ".toolchain"
         ];
       };
     };
