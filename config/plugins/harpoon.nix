@@ -13,7 +13,7 @@
       };
       navNext = "<C-S-N";
       navPrev = "<C-S-P>";
-      toggleQuickMenu = "<C-e>";
+      toggleQuickMenu = "<leader>e";
     };
     markBranch = true;
   };
