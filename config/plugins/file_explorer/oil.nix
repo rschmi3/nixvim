@@ -16,7 +16,7 @@
     plugins.oil = {
       enable = true;
       settings = {
-        keymaps."<leader>e" = "actions.close";
+        keymaps."<C-e>" = "actions.close";
         view_options = {
           show_hidden = true;
         };
