@@ -11,6 +11,7 @@
     ./lazygit.nix
     ./line
     ./lsp.nix
+    ./nvim-r.nix
     ./telescope.nix
     ./treesitter.nix
     ./undo-tree.nix
@@ -18,6 +19,8 @@
   ];
   config = {
     bufferline.enable = false;
-    plugins.web-devicons.enable = true;
+    plugins = {
+      web-devicons.enable = true;
+    };
   };
 }
