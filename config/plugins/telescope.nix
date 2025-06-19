@@ -4,7 +4,7 @@
 
   keymaps = [
     {
-      action = "<cmd>Telescope find_files hidden=true<CR>";
+      action = "<cmd>Telescope find_files hidden=true no_ignore=true<CR>";
       key = "<leader>ff";
     }
     {
@@ -34,6 +34,8 @@
         opts.cwd = opts.cwd or vim.uv.cwd()
 
         local finder = finders.new_async_job({
+          "--hidden",
+          "--no-ignore",
           command_generator = function(prompt)
             if not prompt or prompt == "" then
               return nil
@@ -82,13 +84,15 @@
 
       defaults = {
         file_ignore_patterns = [
-          "^.cargo"
-          "^.git"
-          "^.npm"
-          "^.rustup"
-          "^node_modules"
-          "^target"
+          ".cargo"
+          ".direnv"
+          ".git"
+          ".npm"
+          ".rustup"
           ".toolchain"
+          "node_modules"
+          "target"
+          "%.lock"
         ];
       };
     };
