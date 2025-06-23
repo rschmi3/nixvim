@@ -11,7 +11,7 @@
     ./lazygit.nix
     ./line
     ./lsp.nix
-    ./nvim-r.nix
+    ./r_nvim.nix
     ./telescope.nix
     ./treesitter.nix
     ./undo-tree.nix
@@ -22,5 +22,6 @@
     plugins = {
       web-devicons.enable = true;
     };
+    r_nvim.enable = true;
   };
 }

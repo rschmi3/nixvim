@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, rLanguageServer, ... }:
 {
 
   extraPackages = with pkgs; [
@@ -57,6 +57,12 @@
 
       pylsp = {
         enable = true;
+      };
+
+      r_language_server = {
+        enable = true;
+        cmd = [ "r_language_server" ];
+        package = rLanguageServer;
       };
 
       rust_analyzer = {

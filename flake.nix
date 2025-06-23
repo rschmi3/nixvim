@@ -1,18 +1,33 @@
 {
-  description = "A nixvim configuration";
+  description = "My personal nixvim configuration using the nightly Neovim overlay.";
 
   inputs = {
+    # Core inputs
     flake-parts.url = "github:hercules-ci/flake-parts";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+
+    # Neovim nightly overlay
     neovim-nightly-overlay = {
       url = "github:nix-community/neovim-nightly-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+
+    # nixvim
     nixvim.url = "github:nix-community/nixvim";
+
+    # R language server flake
+    r-language-server.url = "github:rschmi3/r_language_server_nix";
   };
 
   outputs =
-    { nixvim, flake-parts, ... }@inputs:
+    inputs@{
+      flake-parts,
+      nixpkgs,
+      neovim-nightly-overlay,
+      nixvim,
+      r-language-server,
+      ...
+    }:
     flake-parts.lib.mkFlake { inherit inputs; } {
       systems = [
         "x86_64-linux"
@@ -22,30 +37,38 @@
       ];
 
       perSystem =
-        { pkgs, system, ... }:
+        { system, ... }:
         let
+          pkgs = import nixpkgs {
+            inherit system;
+            overlays = [ neovim-nightly-overlay.overlays.default ];
+          };
+
+          rLanguageServer = r-language-server.packages.${system}.r-language-server;
+
           nixvimLib = nixvim.lib.${system};
           nixvim' = nixvim.legacyPackages.${system};
+
           nixvimModule = {
             inherit pkgs;
-            module = import ./config; # import the module directly
-            # You can use `extraSpecialArgs` to pass additional arguments to your module files
+            module = import ./config;
             extraSpecialArgs = {
-              inherit inputs;
+              inherit inputs rLanguageServer;
             };
           };
+
           nvim = nixvim'.makeNixvimWithModule nixvimModule;
         in
         {
-          checks = {
-            # Run `nix flake check .` to verify that your config is not broken
-            default = nixvimLib.check.mkTestDerivationFromNixvimModule nixvimModule;
+          packages.default = nvim;
+
+          devShells.default = pkgs.mkShell {
+            packages = [
+              nvim
+            ];
           };
 
-          packages = {
-            # Lets you run `nix run .` to start nixvim
-            default = nvim;
-          };
+          checks.default = nixvimLib.check.mkTestDerivationFromNixvimModule nixvimModule;
         };
     };
 }

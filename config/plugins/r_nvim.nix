@@ -1,11 +1,16 @@
 {
-  inputs,
+  config,
+  lib,
   pkgs,
   ...
 }:
 {
 
-  config = {
+  options = {
+    r_nvim.enable = lib.mkEnableOption "Enables r_nvim and sets settings";
+  };
+
+  config = lib.mkIf config.r_nvim.enable {
     extraConfigLua = ''
       require("r").setup {
         auto_start = "on startup",
