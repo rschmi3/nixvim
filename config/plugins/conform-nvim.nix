@@ -3,6 +3,7 @@
 
   extraPackages = with pkgs; [
     # Used to format Lua code
+    beautysh
     black
     isort
     nixfmt-rfc-style
@@ -37,6 +38,7 @@
       };
 
       formatters_by_ft = {
+        bash = [ "beautysh" ];
         css = [ "prettier" ];
         go = [ "gofmt" ];
         javascript = [ "prettier" ];
@@ -48,6 +50,7 @@
           "black"
         ];
         rust = [ "rustfmt" ];
+        sh = [ "beautysh" ];
         sql = [ "pg_format" ];
         typescript = [ "prettier" ];
       };
