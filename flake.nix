@@ -28,47 +28,56 @@
       r-language-server,
       ...
     }:
-    flake-parts.lib.mkFlake { inherit inputs; } {
-      systems = [
-        "x86_64-linux"
-        "aarch64-linux"
-        "x86_64-darwin"
-        "aarch64-darwin"
-      ];
+    let
+      flake = flake-parts.lib.mkFlake { inherit inputs; } {
+        systems = [
+          "x86_64-linux"
+          "aarch64-linux"
+          "x86_64-darwin"
+          "aarch64-darwin"
+        ];
 
-      perSystem =
-        { system, ... }:
-        let
-          pkgs = import nixpkgs {
-            inherit system;
-            overlays = [ neovim-nightly-overlay.overlays.default ];
-          };
-
-          rLanguageServer = r-language-server.packages.${system}.r-language-server;
-
-          nixvimLib = nixvim.lib.${system};
-          nixvim' = nixvim.legacyPackages.${system};
-
-          nixvimModule = {
-            inherit pkgs;
-            module = import ./config;
-            extraSpecialArgs = {
-              inherit inputs rLanguageServer;
+        perSystem =
+          { system, ... }:
+          let
+            pkgs = import nixpkgs {
+              inherit system;
+              overlays = [ neovim-nightly-overlay.overlays.default ];
             };
+
+            rLanguageServer = r-language-server.packages.${system}.r-language-server;
+
+            nixvimLib = nixvim.lib.${system};
+            nixvim' = nixvim.legacyPackages.${system};
+
+            nixvimModule = {
+              inherit pkgs;
+              module = import ./config;
+              extraSpecialArgs = {
+                inherit inputs rLanguageServer;
+              };
+            };
+
+            nvim = nixvim'.makeNixvimWithModule nixvimModule;
+          in
+          {
+            packages.default = nvim;
+
+            devShells.default = pkgs.mkShell {
+              packages = [
+                nvim
+              ];
+            };
+
+            checks.default = nixvimLib.check.mkTestDerivationFromNixvimModule nixvimModule;
           };
-
-          nvim = nixvim'.makeNixvimWithModule nixvimModule;
-        in
-        {
-          packages.default = nvim;
-
-          devShells.default = pkgs.mkShell {
-            packages = [
-              nvim
-            ];
-          };
-
-          checks.default = nixvimLib.check.mkTestDerivationFromNixvimModule nixvimModule;
-        };
+      };
+    in
+    flake
+    // {
+      hydraJobs = {
+        x86_64-linux = flake.packages.x86_64-linux.default;
+        aarch64-linux = flake.packages.aarch64-linux.default;
+      };
     };
 }
