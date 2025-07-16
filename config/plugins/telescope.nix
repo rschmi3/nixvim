@@ -87,11 +87,12 @@
           ".cargo"
           ".direnv"
           ".git"
+          ".go"
           ".npm"
-          ".rustup"
-          ".toolchain"
           "node_modules"
+          ".rustup"
           "target"
+          ".toolchain"
           "%.lock"
         ];
       };
