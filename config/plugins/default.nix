@@ -12,6 +12,7 @@
     ./line
     ./lsp.nix
     ./r_nvim.nix
+    ./render-markdown.nix
     ./telescope.nix
     ./treesitter.nix
     ./undo-tree.nix
