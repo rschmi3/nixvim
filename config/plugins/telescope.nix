@@ -87,7 +87,6 @@
           ".cargo"
           ".direnv"
           ".git"
-          ".go"
           ".npm"
           "node_modules"
           ".rustup"
