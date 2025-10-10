@@ -85,6 +85,7 @@
       defaults = {
         file_ignore_patterns = [
           ".cargo"
+          ".ccls"
           ".direnv"
           ".git"
           ".npm"

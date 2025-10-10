@@ -6,6 +6,7 @@
     beautysh
     black
     isort
+    libclang
     nixfmt-rfc-style
     nodePackages.prettier
     pgformatter
@@ -39,6 +40,7 @@
 
       formatters_by_ft = {
         bash = [ "beautysh" ];
+        c = [ "clang_format" ];
         css = [ "prettier" ];
         go = [ "gofmt" ];
         javascript = [ "prettier" ];

@@ -24,6 +24,10 @@
 
     servers = {
 
+      ccls = {
+        enable = true;
+      };
+
       cssls = {
         enable = true;
       };
