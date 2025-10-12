@@ -1,4 +1,9 @@
-{ pkgs, rLanguageServer, ... }:
+{
+  lib,
+  pkgs,
+  rLanguageServer,
+  ...
+}:
 {
 
   extraPackages = with pkgs; [
@@ -6,13 +11,22 @@
     rust-analyzer
   ];
 
+  lsp.keymaps = [
+    {
+      action = lib.nixvim.mkRaw "function() vim.diagnostic.jump({ count=-1, float=true }) end";
+      key = "<leader>k";
+    }
+    {
+      action = lib.nixvim.mkRaw "function() vim.diagnostic.jump({ count=1, float=true }) end";
+      key = "<leader>j";
+    }
+  ];
+
   plugins.lsp = {
     enable = true;
 
     keymaps = {
       diagnostic = {
-        "<leader>j" = "goto_next";
-        "<leader>k" = "goto_prev";
         "<leader>d" = "open_float";
       };
 
