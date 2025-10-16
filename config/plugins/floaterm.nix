@@ -10,6 +10,16 @@
         "v"
       ];
     }
+    {
+      action = "<cmd>FloatermToggle air<CR>";
+      key = "<A-a>";
+      mode = [
+        "i"
+        "n"
+        "t"
+        "v"
+      ];
+    }
   ];
   plugins.floaterm = {
     enable = true;
