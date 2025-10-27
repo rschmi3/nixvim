@@ -11,16 +11,18 @@
     rust-analyzer
   ];
 
-  lsp.keymaps = [
-    {
-      action = lib.nixvim.mkRaw "function() vim.diagnostic.jump({ count=-1, float=true }) end";
-      key = "<leader>k";
-    }
-    {
-      action = lib.nixvim.mkRaw "function() vim.diagnostic.jump({ count=1, float=true }) end";
-      key = "<leader>j";
-    }
-  ];
+  lsp = {
+    keymaps = [
+      {
+        action = lib.nixvim.mkRaw "function() vim.diagnostic.jump({ count=-1, float=true }) end";
+        key = "<leader>k";
+      }
+      {
+        action = lib.nixvim.mkRaw "function() vim.diagnostic.jump({ count=1, float=true }) end";
+        key = "<leader>j";
+      }
+    ];
+  };
 
   plugins.lsp = {
     enable = true;
