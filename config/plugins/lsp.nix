@@ -75,7 +75,11 @@
       };
       # nil_ls = { enable = true; };
 
-      pylsp = {
+      # pylsp = {
+      #   enable = true;
+      # };
+
+      pyright = {
         enable = true;
       };
 
