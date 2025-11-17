@@ -46,10 +46,6 @@
         json = [ "prettier" ];
         lua = [ "stylua" ];
         nix = [ "nixfmt" ];
-        python = [
-          "isort"
-          "ruff"
-        ];
         rust = [ "rustfmt" ];
         sh = [ "beautysh" ];
         sql = [ "pg_format" ];

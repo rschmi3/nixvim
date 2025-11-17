@@ -22,6 +22,9 @@
         key = "<leader>j";
       }
     ];
+    servers = {
+      ruff.enable = true;
+    };
   };
 
   plugins.lsp = {
@@ -80,8 +83,20 @@
         package = rLanguageServer;
       };
 
+      pyright = {
+        enable = true;
+      };
+
       ruff = {
         enable = true;
+        extraOptions = {
+          init_options = {
+            settings = {
+              # Enable import sorting
+              organizeImports = true;
+            };
+          };
+        };
       };
 
       rust_analyzer = {
