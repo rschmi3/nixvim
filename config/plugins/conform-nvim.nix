@@ -4,7 +4,6 @@
   extraPackages = with pkgs; [
     # Used to format Lua code
     beautysh
-    black
     isort
     libclang
     nixfmt-rfc-style
@@ -49,7 +48,7 @@
         nix = [ "nixfmt" ];
         python = [
           "isort"
-          "black"
+          "ruff"
         ];
         rust = [ "rustfmt" ];
         sh = [ "beautysh" ];
@@ -59,7 +58,7 @@
 
       format_on_save = {
         lsp_format = "fallback";
-        timeout_ms = 1000;
+        timeout_ms = 4000;
       };
     };
   };

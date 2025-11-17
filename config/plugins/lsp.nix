@@ -73,20 +73,15 @@
           };
         };
       };
-      # nil_ls = { enable = true; };
-
-      # pylsp = {
-      #   enable = true;
-      # };
-
-      pyright = {
-        enable = true;
-      };
 
       r_language_server = {
         enable = true;
         cmd = [ "r_language_server" ];
         package = rLanguageServer;
+      };
+
+      ruff = {
+        enable = true;
       };
 
       rust_analyzer = {
