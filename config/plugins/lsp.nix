@@ -85,6 +85,9 @@
 
       pyright = {
         enable = true;
+        extraOptions = {
+          disableOrganizeImports = false;
+        };
       };
 
       ruff = {
