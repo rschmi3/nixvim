@@ -23,6 +23,6 @@
     plugins = {
       web-devicons.enable = true;
     };
-    r_nvim.enable = true;
+    r_nvim.enable = false;
   };
 }
