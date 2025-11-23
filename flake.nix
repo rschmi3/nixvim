@@ -78,6 +78,7 @@
       hydraJobs = {
         x86_64-linux = flake.packages.x86_64-linux.default;
         aarch64-linux = flake.packages.aarch64-linux.default;
+        aarch64-darwin = flake.packages.aarch64-darwin.default;
       };
     };
 }
