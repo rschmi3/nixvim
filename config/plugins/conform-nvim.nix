@@ -46,6 +46,10 @@
         json = [ "prettier" ];
         lua = [ "stylua" ];
         nix = [ "nixfmt" ];
+        python = {
+          __unkeyed-1 = "isort";
+          lsp_format = "last";
+        };
         rust = [ "rustfmt" ];
         sh = [ "beautysh" ];
         sql = [ "pg_format" ];
