@@ -19,7 +19,7 @@
         function()
           require("conform").format({async = true})
         end'';
-      key = "<leader><leader>x";
+      key = "<leader><leader>f";
       mode = [ "n" ];
     }
   ];
@@ -28,12 +28,20 @@
     enable = true;
 
     settings = {
-      default_format_opts.lsp_format = "fallback";
+      default_format_opts = {
+        lsp_format = "fallback";
+        timeout_ms = 4000;
+      };
 
       formatters = {
         pg_format = {
           command = lib.getExe pkgs.pgformatter;
           prepend_args = [ "--no-space-function" ];
+        };
+
+        ruff_format = {
+          command = lib.getExe pkgs.ruff;
+          append_args = [ "format" ];
         };
       };
 
@@ -46,10 +54,10 @@
         json = [ "prettier" ];
         lua = [ "stylua" ];
         nix = [ "nixfmt" ];
-        python = {
-          __unkeyed-1 = "isort";
-          lsp_format = "last";
-        };
+        python = [
+          "isort"
+          "ruff_format"
+        ];
         rust = [ "rustfmt" ];
         sh = [ "beautysh" ];
         sql = [ "pg_format" ];
