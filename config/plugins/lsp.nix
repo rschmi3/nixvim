@@ -78,7 +78,7 @@
       };
 
       r_language_server = {
-        enable = true;
+        enable = false;
         cmd = [ "r_language_server" ];
         package = rLanguageServer;
       };
