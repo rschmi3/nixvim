@@ -61,6 +61,7 @@
         rust = [ "rustfmt" ];
         sh = [ "beautysh" ];
         sql = [ "pg_format" ];
+        toml = [ "pyproject-fmt" ];
         typescript = [ "prettier" ];
       };
 
