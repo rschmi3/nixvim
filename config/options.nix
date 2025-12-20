@@ -1,8 +1,9 @@
+{ pkgs, ... }:
 {
   config = {
     clipboard = {
       register = "unnamedplus";
-      providers.wl-copy.enable = true;
+      providers.wl-copy.enable = pkgs.stdenv.hostPlatform.isLinux;
     };
     opts = {
       cursorline = true;
