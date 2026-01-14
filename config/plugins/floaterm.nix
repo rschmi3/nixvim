@@ -12,7 +12,7 @@
     }
     {
       action = "<cmd>FloatermToggle air<CR>";
-      key = "<A-a>";
+      key = "<A-r>";
       mode = [
         "i"
         "n"
