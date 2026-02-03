@@ -35,8 +35,14 @@
 
       formatters = {
         pg_format = {
-          command = lib.getExe pkgs.pgformatter;
           prepend_args = [ "--no-space-function" ];
+        };
+
+        prettier = {
+          prepend_args = [
+            "--ignore-path"
+            ".prettierignore"
+          ];
         };
 
         ruff_format = {
