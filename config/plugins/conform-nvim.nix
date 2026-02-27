@@ -35,10 +35,12 @@
 
       formatters = {
         pg_format = {
+          command = lib.getExe pkgs.pgformatter;
           prepend_args = [ "--no-space-function" ];
         };
 
         prettier = {
+          command = lib.getExe pkgs.nodePackages.prettier;
           prepend_args = [
             "--ignore-path"
             ".prettierignore"
