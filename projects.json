@@ -1,0 +1,12 @@
+{
+  "Build-Nixvim": {
+    "description": "Personal nixvim configuration",
+    "type": 1,
+    "flake": "github:rschmi3/nixvim",
+    "checkinterval": 300,
+    "schedulingshares": 100,
+    "enableemail": false,
+    "emailoverride": "",
+    "keepnr": 3
+  }
+}
