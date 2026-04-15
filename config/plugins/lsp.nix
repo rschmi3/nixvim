@@ -7,7 +7,7 @@
 {
 
   extraPackages = with pkgs; [
-    nixfmt-rfc-style
+    nixfmt
     rust-analyzer
   ];
 

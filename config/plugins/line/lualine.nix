@@ -8,6 +8,11 @@
     plugins = {
       lualine = {
         enable = true;
+        settings.sections.lualine_z = [
+          {
+            "__unkeyed-1".__raw = ''function() return require("opencode").statusline() end'';
+          }
+        ];
       };
     };
   };

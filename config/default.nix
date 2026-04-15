@@ -65,7 +65,15 @@
 
     globals.mapleader = " ";
 
-    package = inputs.neovim-nightly-overlay.packages.${pkgs.stdenv.hostPlatform.system}.default;
+    package =
+      inputs.neovim-nightly-overlay.packages.${pkgs.stdenv.hostPlatform.system}.default.overrideAttrs
+        (old: {
+          postInstall = (old.postInstall or "") + ''
+            if [ -f "$out/share/applications/org.neovim.nvim.desktop" ] && [ ! -e "$out/share/applications/nvim.desktop" ]; then
+              ln -s org.neovim.nvim.desktop "$out/share/applications/nvim.desktop"
+            fi
+          '';
+        });
   };
 
 }

@@ -6,8 +6,8 @@
     beautysh
     isort
     libclang
-    nixfmt-rfc-style
-    nodePackages.prettier
+    nixfmt
+    prettier
     pgformatter
     rustfmt
     stylua

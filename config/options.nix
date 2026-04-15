@@ -6,6 +6,7 @@
       providers.wl-copy.enable = pkgs.stdenv.hostPlatform.isLinux;
     };
     opts = {
+      autoread = true;
       cursorline = true;
       expandtab = true;
       ignorecase = true;

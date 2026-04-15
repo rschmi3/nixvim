@@ -11,6 +11,7 @@
     ./lazygit.nix
     ./line
     ./lsp.nix
+    ./opencode.nix
     ./r_nvim.nix
     ./render-markdown.nix
     ./telescope.nix
