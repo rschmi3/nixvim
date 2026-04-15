@@ -40,7 +40,7 @@
         };
 
         prettier = {
-          command = lib.getExe pkgs.nodePackages.prettier;
+          command = lib.getExe pkgs.prettier;
           prepend_args = [
             "--ignore-path"
             ".prettierignore"
