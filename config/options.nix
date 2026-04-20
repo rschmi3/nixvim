@@ -5,6 +5,21 @@
       register = "unnamedplus";
       providers.wl-copy.enable = pkgs.stdenv.hostPlatform.isLinux;
     };
+    extraConfigLuaPost = ''
+      if (vim.env.SSH_CONNECTION or vim.env.SSH_TTY) and not vim.env.TMUX then
+        vim.g.clipboard = {
+          name = "OSC 52",
+          copy = {
+            ["+"] = require("vim.ui.clipboard.osc52").copy("+"),
+            ["*"] = require("vim.ui.clipboard.osc52").copy("*"),
+          },
+          paste = {
+            ["+"] = require("vim.ui.clipboard.osc52").paste("+"),
+            ["*"] = require("vim.ui.clipboard.osc52").paste("*"),
+          },
+        }
+      end
+    '';
     opts = {
       autoread = true;
       cursorline = true;
@@ -21,19 +36,5 @@
       whichwrap = "b,s,<,>,h,l,[,]";
     };
 
-    #   # This will use OSC 52 when available, fall back to system clipboard otherwise
-    #   extraConfigLua = ''
-    #     vim.g.clipboard = {
-    #       name = "OSC 52",
-    #       copy = {
-    #         ["+"] = require("vim.ui.clipboard.osc52").copy("+"),
-    #         ["*"] = require("vim.ui.clipboard.osc52").copy("*"),
-    #       },
-    #       paste = {
-    #         ['+'] = require('vim.ui.clipboard.osc52').paste('+'),
-    #         ['*'] = require('vim.ui.clipboard.osc52').paste('*'),
-    #       },
-    #     }
-    #   '';
   };
 }
