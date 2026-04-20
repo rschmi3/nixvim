@@ -7,7 +7,17 @@
         "x"
       ];
       key = "<leader>oa";
-      action.__raw = ''function() require("opencode").ask("@this: ", { submit = true  }) end'';
+      action.__raw = ''
+        function()
+          _G.nixvim_opencode.ensure_target(function(target)
+            if not target then
+              return
+            end
+
+            require("opencode").ask("@this: ", { submit = true })
+          end)
+        end
+      '';
       options.desc = "Ask opencode and submit";
     }
     {
@@ -21,6 +31,12 @@
       key = "<leader>ot";
       action.__raw = ''function() require("opencode").toggle() end'';
       options.desc = "opencode toggle";
+    }
+    {
+      mode = "n";
+      key = "<leader>os";
+      action.__raw = "function() _G.nixvim_opencode.select_target() end";
+      options.desc = "Attach to opencode server";
     }
     {
       mode = "n";
@@ -72,6 +88,215 @@
   extraConfigLuaPost = ''
     local ask_win = require("opencode.config").opts.ask.snacks.win
 
+    _G.nixvim_opencode = (function()
+      local M = {}
+      local state = {
+        initialized = false,
+        prompting = false,
+        callbacks = {},
+        mode = nil,
+        port = nil,
+        url = nil,
+        owned_local_cmd = nil,
+      }
+
+      local function notify(message, level)
+        vim.notify(message, level or vim.log.levels.INFO, { title = "opencode" })
+      end
+
+      local function port_url(port)
+        return string.format("http://127.0.0.1:%d", port)
+      end
+
+      local function local_cmd(port)
+        return string.format("opencode --port %d", port)
+      end
+
+      local function remote_cmd(port)
+        return string.format("opencode attach %s", port_url(port))
+      end
+
+      local function terminal_opts()
+        return {
+          win = {
+            position = "right",
+            enter = false,
+            on_win = function(win)
+              require("opencode.terminal").setup(win.win)
+            end,
+          },
+        }
+      end
+
+      local function stop_owned_local()
+        local cmd = state.owned_local_cmd
+        if not cmd then
+          return
+        end
+
+        local terminal = require("snacks.terminal").get(cmd, { create = false })
+        if terminal then
+          terminal:close()
+        end
+        state.owned_local_cmd = nil
+      end
+
+      local function set_target(mode, port)
+        local next_local_cmd = mode == "local" and local_cmd(port) or nil
+        if state.owned_local_cmd and state.owned_local_cmd ~= next_local_cmd then
+          stop_owned_local()
+        end
+
+        if mode == "local" then
+          require("opencode.events").disconnect()
+        end
+
+        state.initialized = true
+        state.mode = mode
+        state.port = port
+        state.url = port_url(port)
+      end
+
+      local function resolve_target(callback)
+        vim.ui.input({
+          prompt = "Opencode port: ",
+          default = state.port and tostring(state.port) or "9000",
+        }, function(input)
+          state.prompting = false
+
+          if not input or vim.trim(input) == "" then
+            local callbacks = state.callbacks
+            state.callbacks = {}
+            for _, cb in ipairs(callbacks) do
+              cb(nil)
+            end
+            return
+          end
+
+          local port = tonumber(vim.trim(input))
+          if not port then
+            notify("Invalid opencode port: " .. input, vim.log.levels.ERROR)
+            local callbacks = state.callbacks
+            state.callbacks = {}
+            for _, cb in ipairs(callbacks) do
+              cb(nil)
+            end
+            return
+          end
+
+          require("opencode.server")
+            .new(port)
+            :next(function(server)
+              set_target("remote", port)
+              require("opencode.events").connect(server)
+              notify(string.format("Attached to opencode on port %d (%s)", server.port, server.cwd))
+              local callbacks = state.callbacks
+              state.callbacks = {}
+              for _, cb in ipairs(callbacks) do
+                cb(state)
+              end
+            end)
+            :catch(function()
+              set_target("local", port)
+              notify(string.format("Using local opencode on port %d", port))
+              local callbacks = state.callbacks
+              state.callbacks = {}
+              for _, cb in ipairs(callbacks) do
+                cb(state)
+              end
+            end)
+        end)
+      end
+
+      function M.ensure_target(callback)
+        callback = callback or function() end
+
+        if state.initialized and state.port then
+          callback(state)
+          return
+        end
+
+        table.insert(state.callbacks, callback)
+        if state.prompting then
+          return
+        end
+
+        state.prompting = true
+        resolve_target(callback)
+      end
+
+      function M.select_target()
+        local previous = vim.deepcopy(state)
+        state.initialized = false
+        M.ensure_target(function(target)
+          if target then
+            return
+          end
+
+          state = previous
+        end)
+      end
+
+      function M.current_port(callback)
+        M.ensure_target(function(target)
+          if target then
+            callback(target.port)
+          end
+        end)
+      end
+
+      function M.current_cmd()
+        if not (state.initialized and state.port) then
+          return nil
+        end
+
+        if state.mode == "remote" then
+          return remote_cmd(state.port)
+        end
+
+        return local_cmd(state.port)
+      end
+
+      function M.start_or_show_current()
+        M.ensure_target(function(target)
+          if not target then
+            return
+          end
+
+          local cmd = M.current_cmd()
+          local terminal = require("snacks.terminal").get(cmd, { create = false })
+          if terminal then
+            terminal:show()
+            return
+          end
+
+          require("snacks.terminal").open(cmd, terminal_opts())
+          if target.mode == "local" then
+            state.owned_local_cmd = cmd
+          end
+        end)
+      end
+
+      function M.toggle_current()
+        M.ensure_target(function(target)
+          if not target then
+            return
+          end
+
+          require("snacks.terminal").toggle(M.current_cmd(), terminal_opts())
+          if target.mode == "local" then
+            state.owned_local_cmd = M.current_cmd()
+          end
+        end)
+      end
+
+      function M.stop_local()
+        stop_owned_local()
+      end
+
+      return M
+    end)()
+
     ask_win.keys.i_s_cr = nil
     ask_win.keys.i_m_cr = {
       "<M-CR>",
@@ -94,40 +319,26 @@
       settings = {
         auto_reload = true;
         events.reload = true;
-        port = 9000;
 
         server = {
+          port.__raw = ''
+            function(callback)
+              _G.nixvim_opencode.current_port(callback)
+            end
+          '';
           start.__raw = ''
             function()
-              require('snacks.terminal').open('opencode --port 9000', {
-                win = {
-                  position = 'right',
-                  enter = false,
-                  on_win = function(win)
-                    require('opencode.terminal').setup(win.win)
-                  end,
-                },
-              })
+              _G.nixvim_opencode.start_or_show_current()
             end
           '';
           stop.__raw = ''
             function()
-              require('snacks.terminal').get('opencode --port 9000', {
-                win = { position = 'right', enter = false },
-              }):close()
+              _G.nixvim_opencode.stop_local()
             end
           '';
           toggle.__raw = ''
             function()
-              require('snacks.terminal').toggle('opencode --port 9000', {
-                win = {
-                  position = 'right',
-                  enter = false,
-                  on_win = function(win)
-                    require('opencode.terminal').setup(win.win)
-                  end,
-                },
-              })
+              _G.nixvim_opencode.toggle_current()
             end
           '';
         };
