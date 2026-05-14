@@ -13,7 +13,7 @@
       {
         callback.__raw = ''
           function()
-            vim.highlight.on_yank()
+            vim.hl.on_yank()
           end'';
         desc = "Highlight when yanking (copying) text";
         event = [ "TextYankPost" ];
