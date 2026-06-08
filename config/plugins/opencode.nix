@@ -320,6 +320,14 @@
         auto_reload = true;
         events.reload = true;
 
+        lsp = {
+          enabled = false;
+          handlers = {
+            hover.enabled = false;
+            code_action.enabled = false;
+          };
+        };
+
         server = {
           port.__raw = ''
             function(callback)
